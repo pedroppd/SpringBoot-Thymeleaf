@@ -37,6 +37,16 @@ public class FuncionarioService {
 		return obj;
 	}
 	
+	public List<Funcionario> findByNome(String nome){
+		List<Funcionario> list = repo.findByNomeContainingIgnoreCase(nome);
+		return list;
+	}
+	
+	public List<Funcionario> findByCargo(Integer id){
+		List<Funcionario> list = repo.findByCargoId(id);
+		return list;
+	}
+	
 	public Funcionario update(Funcionario obj) {
 		Funcionario newObj = new Funcionario();
 		newObj.setId(obj.getId());

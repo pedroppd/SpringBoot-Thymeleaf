@@ -28,9 +28,6 @@ public class FuncionarioController {
 	private FuncionarioService service;
 
 	@Autowired
-	private FuncionarioRepository rp;
-
-	@Autowired
 	private CargoService cargoService;
 
 	@GetMapping("/cadastrar")
@@ -73,9 +70,17 @@ public class FuncionarioController {
 
 	@GetMapping("/buscar/nome")
 	public String findByNome(@RequestParam("nome") String nome, ModelMap model) {
-		model.addAttribute("funcionarios", rp.findByNomeContainingIgnoreCase(nome));
+		model.addAttribute("funcionarios", service.findByNome(nome));
 		return "/funcionario/lista";
 	}
+	
+	
+	@GetMapping("/buscar/cargo")
+	public String findByCargo(@RequestParam("id") Integer id, ModelMap model) {
+		model.addAttribute("funcionarios", service.findByCargo(id));
+		return "/funcionario/lista";
+	}
+	
 
 	@ModelAttribute("ufs")
 	public UF[] getUfs() {
