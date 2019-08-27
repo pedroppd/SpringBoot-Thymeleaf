@@ -1,5 +1,7 @@
 package com.projeto.services;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,6 +63,23 @@ public class FuncionarioService {
 		newObj.setEndereco(obj.getEndereco());
 		newObj.setNome(obj.getNome());
 		newObj.setSalario(obj.getSalario());		
+	}
+
+	public List<Funcionario> findByDate(LocalDate entrada, LocalDate saida) {
+		if(entrada != null && saida!= null) {
+			repo.findByDataEntradaAndDataSaida(entrada, saida);
+		}
+		else if(entrada != null) {
+			repo.findByDataEntrada(entrada);
+		}
+		else if(saida!= null) {
+			repo.findByDataSaida(saida);
+		}
+		else {
+			return new ArrayList<>();
+		}
+		return null;
+		
 	}
 	
 	

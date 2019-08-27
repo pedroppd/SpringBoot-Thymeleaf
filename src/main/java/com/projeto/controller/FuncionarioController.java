@@ -1,8 +1,11 @@
 package com.projeto.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.projeto.model.Cargos;
 import com.projeto.model.Funcionario;
 import com.projeto.model.enums.UF.UF;
-import com.projeto.repository.FuncionarioRepository;
 import com.projeto.services.CargoService;
 import com.projeto.services.FuncionarioService;
 
@@ -81,6 +83,14 @@ public class FuncionarioController {
 		return "/funcionario/lista";
 	}
 	
+	@GetMapping("/buscar/data")
+	public String findByDate(@RequestParam("entrada") @DateTimeFormat(iso = ISO.DATE) LocalDate entrada, 
+			@RequestParam("saida") @DateTimeFormat(iso = ISO.DATE) LocalDate saida, 
+			ModelMap model) {
+		
+		model.addAttribute("funcionarios", service.findByDate(entrada, saida));
+		return "/funcionario/lista";
+	}
 
 	@ModelAttribute("ufs")
 	public UF[] getUfs() {
