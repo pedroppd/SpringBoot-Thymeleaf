@@ -22,12 +22,13 @@ public class Cargos implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "nome", nullable = false, unique = true, length = 60)
+	@Column(name = "nome", unique = true, length = 60)
 	@NotNull(message = "Campo requerido")
 	private String nome;
 	
 	@ManyToOne
 	@JoinColumn(name="id_departamento")
+	@NotNull(message="O campo departamento é requerido!")
     Departamento departamento;
 	
 	@OneToMany(mappedBy="cargo")

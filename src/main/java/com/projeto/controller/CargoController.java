@@ -2,9 +2,12 @@ package com.projeto.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +43,13 @@ public class CargoController {
 	}
 	
 	@PostMapping("/salvar")
-	public String save(Cargos cargos, RedirectAttributes attr) {
+	public String save(@Valid Cargos cargos, BindingResult br, RedirectAttributes attr) {
+		if(br.hasErrors()) {
+			return "/cargo/cadastro";
+		}
+		if(cargos == null) {
+			attr.addFlashAttribute("fail", "Campo obrigatório");
+		}
 		service.save(cargos);
 		attr.addFlashAttribute("success", "Cadastro efetuado com sucesso!!");
 		return "redirect:/cargos/cadastrar";
@@ -64,7 +73,10 @@ public class CargoController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Cargos cargos, RedirectAttributes attr) {
+	public String editar(@Valid Cargos cargos, BindingResult br, RedirectAttributes attr) {
+		if(br.hasErrors()) {
+			return "/cargo/cadastro";
+		}
 		service.update(cargos);
 		attr.addFlashAttribute("success", "Cargo editado com sucesso!!");
 		return "redirect:/cargos/listar";

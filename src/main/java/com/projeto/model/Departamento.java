@@ -20,8 +20,9 @@ public class Departamento implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull(message="Campo requerido!!")
-	@Column(name = "nome", nullable = false, unique = true, length = 60)
+	
+	@Column(name = "nome", unique = true, length = 60)
+	@NotNull(message="O campo nome é requerido!")
 	private String nome;
 	
 	@OneToMany(mappedBy = "departamento")

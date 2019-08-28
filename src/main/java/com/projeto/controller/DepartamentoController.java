@@ -3,6 +3,7 @@ package com.projeto.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,10 @@ public class DepartamentoController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Departamento obj, RedirectAttributes attr) {
+	public String salvar(Departamento obj, BindingResult br, RedirectAttributes attr) {
+		if(br.hasErrors()) {
+			return "/cargo/cadastro";
+		}
 		service.save(obj);
 		attr.addFlashAttribute("success", "Departamento editado com sucesso!");
 		return "redirect:/departamentos/cadastrar";
@@ -51,7 +55,10 @@ public class DepartamentoController {
 	
 	
 	@PostMapping("/editar")
-	public String editar(Departamento departamento, RedirectAttributes attr) {
+	public String editar(Departamento departamento, BindingResult br, RedirectAttributes attr) {
+		if(br.hasErrors()) {
+			return "/cargo/cadastro";
+		}
 		service.update(departamento);
 		attr.addFlashAttribute("success", "Departamento editado com sucesso!");
 		return "redirect:/departamentos/cadastrar";

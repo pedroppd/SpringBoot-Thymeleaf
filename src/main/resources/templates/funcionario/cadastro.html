@@ -31,7 +31,7 @@
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Funcionário</label>
-	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+	                        <input type="text" class="form-control" id="nome" required placeholder="Nome Completo"
 	                               autofocus="autofocus" th:field="*{nome}"/>
 	                        <div class="invalid-feedback">
 	
@@ -39,7 +39,7 @@
 	                    </div>
 	                    <div class="form-group col-md-6">
 	                        <label for="salario">Salário Bruto</label>
-	                        <input type="text" class="form-control" id="salario" data-mask="#.##0,00"
+	                        <input type="text" class="form-control" id="salario" required data-mask="#.##0,00"
 	                               data-mask-reverse="true" th:field="*{salario}"/>
 	                        <div class="invalid-feedback">
 	
@@ -49,14 +49,14 @@
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="dataEntrada">Data de Entrada</label>
-	                        <input type="date" class="form-control"  id="dataEntrada" th:field="*{dataEntrada}"/>
+	                        <input type="date" class="form-control"  required id="dataEntrada" th:field="*{dataEntrada}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
 	                    </div>
 	                    <div class="form-group col-md-6">
 	                        <label for="dataSaida">Data de Saída</label>
-	                        <input type="date" class="form-control"  id="dataSaida" th:field="*{dataSaida}"/>
+	                        <input type="date" class="form-control"   id="dataSaida" th:field="*{dataSaida}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
@@ -65,7 +65,7 @@
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="cargo">Cargo</label>
-	                        <select id="cargo" class="form-control"  th:field="*{cargo}">
+	                        <select id="cargo" class="form-control" required  th:field="*{cargo}">
 	                            <option value="">Selecione...</option>
 	                            <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}"></option>
 	                        </select>
@@ -77,7 +77,7 @@
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="cidade">Cidade</label>
-	                        <input type="text" class="form-control" id="cidade" name="endereco.cidade" th:field="*{endereco.cidade}" />
+	                        <input type="text" class="form-control" id="cidade" required name="endereco.cidade" th:field="*{endereco.cidade}" />
 	                        <div class="invalid-feedback">
 	
 	                        </div>
@@ -94,14 +94,14 @@
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="numero">Número</label>
-	                        <input type="text" class="form-control" id="numero" name="endereco.numero" th:field="*{endereco.numero}"/>
+	                        <input type="text" class="form-control" id="numero" required name="endereco.numero" th:field="*{endereco.numero}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
 	                    </div>
 	                    <div class="form-group col-md-6">
 	                        <label for="complemento">Complemento</label>
-	                        <input type="text" class="form-control" id="complemento" placeholder="fundos, casa, AP. 102, .."
+	                        <input type="text" class="form-control" id="complemento" required placeholder="fundos, casa, AP. 102, .."
 	                               name="endereco.complemento" th:field="*{endereco.complemento}"/>
 	                        <div class="invalid-feedback">
 	
@@ -111,14 +111,14 @@
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="bairro">Bairro</label>
-	                        <input type="text" class="form-control" id="bairro" name="endereco.bairro" th:field="*{endereco.bairro}"/>
+	                        <input type="text" class="form-control" id="bairro" required name="endereco.bairro" th:field="*{endereco.bairro}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
 	                    </div>
 	                    <div class="form-group col-md-4">
 	                        <label for="uf">UF</label>
-	                        <select id="uf" class="form-control" name="endereco.uf" th:field="*{endereco.uf}">
+	                        <select id="uf" class="form-control" name="endereco.uf" required th:field="*{endereco.uf}">
 	                            <option value="">Selecione...</option>
 	                            <option th:each="uf : ${ufs}" th:value="${uf}" th:text="${uf.sigla}"></option>
 	                           
@@ -129,7 +129,7 @@
 	                    </div>
 	                    <div class="form-group col-md-2">
 	                        <label for="cep">Cep</label>
-	                        <input type="text" class="form-control" id="cep" data-mask="00000-000" name="endereco.cep"
+	                        <input type="text" class="form-control" id="cep" required data-mask="00000-000" name="endereco.cep"
 	                              th:field="*{endereco.cep}"/>
 	                        <div class="invalid-feedback">
 	
